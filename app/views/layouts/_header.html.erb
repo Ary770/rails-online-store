@@ -1,16 +1,11 @@
 <nav class="page-header">
-  <% if user_signed_in? %>
     <ul class="nav nav-pills">
       <li role="presentation" class="active"><a href="/">Store</a></li>
-      <li role="presentation"><%= link_to "Log Out", destroy_user_session_path, method: :delete%>
-      <!--<li role="presentation"><a href="/categories">Categories</a></li>-->
-      <!--<li role="presentation"></li>-->
+      <li role="presentation"><%= link_to "Categories", categories_path%></li>
+      <% if user_signed_in? %>
+        <li role="presentation"><%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <li role="presentation"><%= link_to "Sign In",  new_user_session_path %></li>
+      <% end %>
     </ul>
-  <% else %>
-    <ul class="nav nav-pills">
-      <li role="presentation" class="active"><a href="/">Home</a></li>
-      <li role="presentation"><%= link_to "Sign In",  new_user_session_path %></li>
-      <!--<li role="presentation"><a href="/signup">Sign Up</a>-->
-    </ul>
-  <% end %>
 </nav>
