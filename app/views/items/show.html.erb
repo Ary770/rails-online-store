@@ -4,5 +4,6 @@
 
 <h2><%= number_to_currency(@item.price) %></h2>
 
+<%= button_to 'Add to Cart', line_items_path(item_id: @item),  class:"btn btn-primary" %></br>
 
 
