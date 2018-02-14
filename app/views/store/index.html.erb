@@ -1,3 +1,8 @@
-<h1>Index! Welcome</h1>
+<h1>Welcome to the Pri Etz Store!</h1>
 
 
+<% @items.each do |item| %>
+  <% if item.inventory > 0 %>
+    <p><%= item.name %> | <%= "$#{item.price.to_f/100}" %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
+  <% end %>
+<% end %>

@@ -1,0 +1,19 @@
+<h1>New Product!</h1>
+
+<%= form_for(@item) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %></br>
+  
+  <%= f.label :price %>
+  <%= f.text_field :price %></br>
+  <!--validate that price should be only a number-->
+  
+  <%= f.label :inventory %>
+  <%= f.text_field :inventory %></br>
+  
+  <%= f.label :category %>
+  <%= f.collection_select :category_id, Category.all, :id, :name %></br>
+  
+  <%= f.submit nil, class:"btn btn-primary" %>
+  
+<% end %>
