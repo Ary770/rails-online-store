@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   
   def new
+    #Validate user for admin.
+    @category = Category.find_by(id: params[:category_id]) if params[:category_id]
     @item = Item.new  
   end
   

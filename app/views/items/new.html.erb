@@ -1,4 +1,4 @@
-<h1>New Product!</h1>
+<h1>Add New Item <%="To #{@category.name}" if @category%></h1>
 
 <%= form_for(@item) do |f| %>
   <%= f.label :name %>
@@ -11,9 +11,15 @@
   <%= f.label :inventory %>
   <%= f.text_field :inventory %></br>
   
+  <!--clean this up!-->
   <%= f.label :category %>
-  <%= f.collection_select :category_id, Category.all, :id, :name %></br>
-  
+  <% if @category %>
+    <p><%= @category.name %></p>
+    <%= hidden_field_tag "category_id", "#{@category.id}"%></br>
+  <% else %>
+    <%= f.collection_select :category_id, Category.all, :id, :name %></br>
+  <% end %>
+    
   <%= f.submit nil, class:"btn btn-primary" %>
   
 <% end %>
