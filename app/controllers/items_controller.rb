@@ -15,14 +15,15 @@ class ItemsController < ApplicationController
     ##clean logic into method
     if @item = Item.find_by(name: params[:item][:name])
       ##maybe show alert that this item already exists, ask if you would like to update
-      flash[:alert] = "#{@item.name} already exists."
+      flash[:error] = "#{@item.name} already exists."
       redirect_to item_path(@item) 
     else
       @item = Item.new(item_params)
-        if @item.save
+      if @item.save
         flash[:notice] = "Item has been created"
         redirect_to item_path(@item)
-      else
+       else
+        ## save errors to flash
         render :new
       end
     end
@@ -36,7 +37,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      # save errors to flash, display in edit view
+      # save errors to flash, display in edit vie
       redirect_to edit_item(@item)
     end
   end
