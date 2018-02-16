@@ -1,0 +1,25 @@
+<h1>Edit <%= @item.name %></h1>
+
+<%= form_for(@item) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %></br>
+  
+  <%= f.label :price %>
+  <%= f.text_field :price %></br>
+  <!--validate that price should be only a number-->
+  
+  <%= f.label :inventory %>
+  <%= f.text_field :inventory %></br>
+  
+  <!--clean this up!-->
+  <%= f.label :category %>
+  <% if @category %>
+    <p><%= @category.name %></p>
+    <%= hidden_field_tag "category_id", "#{@category.id}"%></br>
+  <% else %>
+    <%= f.collection_select :category_id, Category.all, :id, :name %></br>
+  <% end %>
+    
+  <%= f.submit nil, class:"btn btn-primary" %>
+  
+<% end %>

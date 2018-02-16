@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   
   def new
     #Validate user for admin.
@@ -7,11 +8,11 @@ class ItemsController < ApplicationController
   end
   
   def show
-    @item = Item.find_by(id: params[:id])
   end
   
   def create
     ##validate user is admin! use cancan
+    ##clean logic into method
     if @item = Item.find_by(name: params[:item][:name])
       ##maybe show alert that this item already exists, ask if you would like to update
       flash[:alert] = "#{@item.name} already exists."
@@ -27,13 +28,20 @@ class ItemsController < ApplicationController
     end
   end
   
+  def edit 
+  end
+  
   def update
     ##validate for user being admin
-    
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      # save errors to flash, display in edit view
+      redirect_to edit_item(@item)
+    end
   end
   
   def destroy
-    @item = Item.find_by(id: params[:id])
     @item.destroy
     flash[:notice] = "item deleted."
     redirect_to root_path
@@ -43,6 +51,10 @@ class ItemsController < ApplicationController
   
   def item_params
     params.require(:item).permit(:name, :inventory, :price, :description, :category_id)
+  end
+  
+  def set_item
+    @item = Item.find_by(id: params[:id])
   end
   
 end
