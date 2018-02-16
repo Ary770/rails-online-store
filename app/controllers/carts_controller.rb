@@ -7,9 +7,9 @@ class CartsController < ApplicationController
     current_user.cart.status = "submitted"
     current_user.cart.save
     update_inventory
-    @submitted_cart_id = current_user.cart
+    @cart = current_user.cart
     reset_current_cart
-    redirect_to cart_path(@submitted_cart_id)
+    redirect_to cart_path(@cart)
   end
   
   private
@@ -23,7 +23,8 @@ class CartsController < ApplicationController
   end
   
   def reset_current_cart
-    current_user.cart= nil
+    current_user.cart.destroy
+    current_user.cart = nil
     current_user.save
   end
 end
