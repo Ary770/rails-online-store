@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item) 
     else
       @item = Item.new(item_params)
+      require 'pry'; binding.pry
       if @item.save
         flash[:notice] = "Item has been created"
         redirect_to item_path(@item)
