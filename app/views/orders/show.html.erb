@@ -1,0 +1,8 @@
+
+<h1>Order#: <%= @order.id %></h1>
+</br>
+<% @order.line_items.each do |line_item| %>
+  <p><%= link_to line_item.item.name, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price) %> | Quantity: <%= line_item.quantity %></p>
+  <% end %>
+
+<h3>Order total: <strong><%= number_to_currency(@order.total) %></strong> </h3>

@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   
   post '/orders', to: 'orders#create', as: 'create_order'
   
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
