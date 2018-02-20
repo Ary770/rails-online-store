@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   
   post '/orders' => 'orders#create', as: 'create_order'
   
+  #Admin Routes
   resources :admin, only: [:index]
+  get '/items_index' => 'admin#items', as: 'admin_items'
+  get '/orders_index' => 'admin#orders', as: 'admin_orders'
   
-  get '/items_index' => 'admin#items_index', as: 'admin_items_index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

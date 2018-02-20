@@ -4,8 +4,11 @@
       <li role="presentation"><%= link_to "Categories", categories_path%></li>
       <% if user_signed_in? %>
         <li role="presentation"><%= link_to "Cart", cart_path(current_user.cart) if current_user.cart%></li>
-        <li role="presentation"><%= link_to "Orders", orders_path if current_user.orders != []%></li>
-         <li role="presentation"><%= link_to "Admin", admin_index_path if current_user.admin %></li>
+        <% if current_user.admin %>
+          <li role="presentation"><%= link_to "Admin", admin_index_path %></li>
+        <% else %>
+           <li role="presentation"><%= link_to "Orders", orders_path if current_user.orders != []%></li>
+        <% end %>
         <li role="presentation"><%= link_to "Log Out", destroy_user_session_path, method: :delete %>
       <% else %>
         <li role="presentation"><%= link_to "Sign In",  new_user_session_path %></li>

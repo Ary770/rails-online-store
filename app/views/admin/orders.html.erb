@@ -1,0 +1,9 @@
+<!--Incorporate Search Box-->
+
+<% @orders.reverse.each do |order| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4>User: <%= order.user.email %> |Order#: <%= order.id %> | <%= order.created_at.strftime("Order Placed: %b %d, %Y") %> | Status: <%= order.status %> | <strong><%= number_to_currency(order.total) %></strong></h4>
+    </div>
+  </div>
+<% end %>
