@@ -1,20 +1,15 @@
 <h1>Your Cart</h1>
 
-  
-<% if !current_user.cart %>
-  <p>Your Cart is empty</p> 
-<% end %>
+<%= render partial: "line_item", collection: @cart.line_items  %>
 
-<% @cart.line_items.each do |line_item| %>
-  <p><%= link_to line_item.item.name, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price) %> | Quantity: <%= line_item.quantity %> | <%= link_to "Remove Item", line_item_path(line_item), method: :delete%> | <% if line_item.item.inventory < 5 %>
-    <strong>There are only <%= line_item.item.inventory %> items left in stock.</strong>
-  <% end %> </p>
-<% end %>
+<div class="green"> 
+  <h4>Order total: <strong><%= number_to_currency(@cart.total) %></strong></h4>
+</div>
 
-<p>Order total: <strong><%= number_to_currency(@cart.total) %></strong> </p>
-  <%#number_to_currency(@cart.total) %>
-<% if @cart.status == "submitted" %>
-  <p>Submitted</p>
+<% if @cart.line_items == [] %>
+  <div class="fire-brick">
+    <p>Your Cart Is Empty!</p>
+  </div>
 <% else %>
-  <%= button_to 'Checkout', new_order_path, method: :get  %>
+  <%= button_to 'Checkout', new_order_path, method: :get, class: "btn btn-primary"  %>
 <% end %>

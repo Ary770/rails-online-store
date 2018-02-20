@@ -1,0 +1,7 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4><%= link_to line_item.item.name, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price) %> | Quantity: <%= line_item.quantity %> | <%= link_to "Remove Item", line_item_path(line_item), method: :delete%> | <% if line_item.item.inventory < 5 %>
+    <strong>There are only <%= line_item.item.inventory %> items left in stock.</strong>
+    <% end %></h4>
+  </div>
+</div>
