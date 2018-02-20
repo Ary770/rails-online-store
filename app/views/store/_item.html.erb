@@ -1,0 +1,12 @@
+<div class="col-sm-6 col-md-4 ">
+  <div class="thumbnail">
+    <!--<img data-src="holder.js/100%x200" src="https://i.imgur.com/jWzR2o7.jpg" data-holder-rendered="true" >-->
+    <div class="caption">
+    <% if item.inventory > 0 %>
+      <h3><%= link_to item.name, item_path(item) %></h3>
+      <h3><%= number_to_currency(item.price)%></h3>
+      <p><%= button_to 'Add to Cart', line_items_path(item_id: item),  class:"btn btn-primary" %></p>
+    <% end %>
+    </div>
+  </div>
+</div>

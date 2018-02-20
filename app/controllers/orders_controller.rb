@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
     @order.save
     update_inventory
     reset_current_cart
-    #current_user.save
     flash[:notice] = "Your Order Has Been Submitted"
     redirect_to order_path(@order)
   end

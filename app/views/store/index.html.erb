@@ -1,8 +1,5 @@
 <h1>Welcome to the Pri Etz Store!</h1>
 
-<% @items.each do |item| %>
-  <% if item.inventory > 0 %>
-    <h3><%= link_to item.name, item_path(item) %> | <%= number_to_currency(item.price) %> </h3>
-    <%= button_to 'Add to Cart', line_items_path(item_id: item),  class:"btn btn-primary" %></br>
-  <% end %>
-<% end %>
+<div class="row">
+  <%= render partial: "item", collection: @items  %>
+</div>
