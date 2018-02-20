@@ -2,13 +2,17 @@ Notes:
 
 Things to work on next:
 
+Header
+- My Orders link if any, when logged_in 
+- Admin button for admin
+
 Incorporate Addresses
 - Add address model and migration related to user
 - Add address_id field to orders table 
 - Prompt user to enter shipping address at checkout 
 - Address should be saved to @order
 
-Add Authorizations with CanCanCan
+##Add Authorizations with CanCanCan
 
 Incorporate PayPal
 
