@@ -12,4 +12,9 @@ class AdminController < ApplicationController
     @orders = Order.all
   end
   
+  def show_order
+    require 'pry'; binding.pry
+    @order = Order.find(params[:id])
+  end
+  
 end

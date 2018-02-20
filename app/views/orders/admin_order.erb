@@ -1,0 +1,23 @@
+<h1>Order #: <%= @order.id %></h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @order.user.email %> | <%= @order.created_at.strftime("Order Placed: %b %d, %Y") %> | Status: <%= @order.status %> | <strong><%= number_to_currency(@order.total) %></strong></h3>
+  </div>
+  <% @order.line_items.each do |line_item| %>
+    <div class="panel-body">
+      <%= link_to line_item.item.name, item_path(line_item.item) %> | <%= number_to_currency(line_item.item.price) %> | Quantity: <%= line_item.quantity %>
+    </div>
+  <% end %>
+  <div class="panel-body">
+    Shipp To: 
+  </div>
+</div>
+
+
+<%=form_for(@order) do |f| %>
+  <%= f.label :status %>
+  <%= f.text_field :status %>
+  
+  <%= f.submit %>
+<% end %>

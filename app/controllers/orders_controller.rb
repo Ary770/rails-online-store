@@ -23,6 +23,14 @@ class OrdersController < ApplicationController
     @order = current_user.orders.find_by(id: params[:id])
   end
   
+  def admin_order
+    if current_user.admin
+      @order = Order.find(params[:id])
+    else
+      redirect_to root_path
+    end
+  end
+  
   private
   
   def order_params

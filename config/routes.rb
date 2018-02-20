@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :admin, only: [:index]
   get '/items_index' => 'admin#items', as: 'admin_items'
   get '/orders_index' => 'admin#orders', as: 'admin_orders'
+  get '/show_order/:id' => 'admin#show_order'
+  get '/admin_order/:id' => 'orders#admin_order'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
