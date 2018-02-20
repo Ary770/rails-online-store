@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :carts
   end
   
-  root 'store#index', as: 'store'
+  root 'store#index' #, as: 'store'
   
   post '/orders', to: 'orders#create', as: 'create_order'
   
