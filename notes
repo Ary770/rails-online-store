@@ -1,18 +1,22 @@
-Notes:
-
 Things to work on next:
 
 Header
-- My Orders link if any, when logged_in 
-- Admin button for admin
+#- My Orders link, when logged_in 
+#- Admin button for admin
+
+Add Admin Items with all info
 
 Incorporate Addresses
-- Add address model and migration related to user
+- Add address model and migration 
 - Add address_id field to orders table 
 - Prompt user to enter shipping address at checkout 
 - Address should be saved to @order
 
-##Add Authorizations with CanCanCan
+Add Images to Items
+-add image string column to items
+-figure out rending images from app directory or use Imgur
+
+#Add Authorizations with CanCanCan
 
 Incorporate PayPal
 
