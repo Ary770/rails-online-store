@@ -3,7 +3,13 @@
 <h1><%= @item.name %></h1>
 
 <h2><%= number_to_currency(@item.price) %></h2>
-
+<% if @item.inventory < 5 %>
+  <div class="fire-brick">
+    <p>
+      <strong>There are only <%= @item.inventory %> items left in stock.</strong>
+    </p>
+  </div>
+<% end %>
 <%= button_to 'Add to Cart', line_items_path(item_id: @item),  class:"btn btn-primary" %></br>
 
 

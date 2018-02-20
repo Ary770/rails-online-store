@@ -2,6 +2,15 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :read, :all
+    if user.present?
+      can :manage, LineItem
+      can :create, Order
+      if user.admin?  # additional permissions for administrators
+        can :manage, :all
+      end
+    end
+    
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

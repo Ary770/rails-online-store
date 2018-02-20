@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-  
+  load_and_authorize_resource
   def create
     if user_signed_in?
       current_user.cart ||= current_user.build_cart ##review this line of code!
@@ -9,7 +9,7 @@ class LineItemsController < ApplicationController
       redirect_to cart_path(current_user.cart)
     else
       flash[:error] = "Please Sign In To Add To Cart"
-      redirect_to root_path
+      redirect_to "/"
     end
   end
   
