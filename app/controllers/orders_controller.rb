@@ -31,6 +31,17 @@ class OrdersController < ApplicationController
     end
   end
   
+  def update
+    if current_user.admin
+      @order = Order.find(params[:id])
+      @order.status = params[:order][:status]
+      @order.save
+      redirect_to admin_orders_path
+    else
+      redirect_to root_path
+    end
+  end
+  
   private
   
   def order_params
