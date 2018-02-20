@@ -1,0 +1,5 @@
+<% if current_user.admin %>
+  <p><%= button_to "Items Index", admin_items_index_path%></p>
+  <p><%= button_to "Add New Item", new_item_path%></p>
+  <p><%= button_to "Add New Category", new_category_path%></p>
+<% end %>

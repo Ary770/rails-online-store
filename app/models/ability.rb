@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, :all
+    can :read, [Cart, Category, Item, LineItem, Order]
     if user.present?
       can :manage, LineItem
       can :create, Order

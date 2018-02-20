@@ -4,6 +4,7 @@
   <h3><%= link_to "#{item.name} | #{number_to_currency(item.price)}", item_path(item) %></h3>
 <% end %>
 
-<% if current_user.admin %>
-  <p><%= link_to "Add New Item", new_category_item_path(@category.id)%></p>
+<% if can? :create, Item %>
+  <p><%= button_to "Add New Item", new_category_item_path(@category.id), method: :get%></p>
+  <p><%= button_to "Edit Category", edit_category_path(@category.id), method: :get%></p>
 <% end %>

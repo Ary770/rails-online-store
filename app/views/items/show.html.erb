@@ -9,9 +9,9 @@
   </div>
 <% end %>
 
-<% if current_user.admin %>
+<% if can? :edit, @item %>
   <h3>Inventory: <%= @item.inventory%></h3>
-  <%= button_to "Edit Item", edit_item_path%></br>
+  <p><%= button_to "Edit Item", edit_item_path, method: :get%></p>
 <% end %>
 
 <%= button_to 'Add to Cart', line_items_path(item_id: @item),  class:"btn btn-primary" %>
