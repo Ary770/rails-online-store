@@ -31,12 +31,9 @@ class Cart < ApplicationRecord
       item.save
     end
   end
-  # def update_inventory
-  #   current_user.cart.items.each do |item|
-  #     @line_item = current_user.cart.line_items.find_by(item_id: item.id)
-  #     item.inventory -= @line_item.quantity
-  #     item.save
-  #   end
-  # end
+  
+  def reset_cart
+    self.destroy
+  end
   
 end

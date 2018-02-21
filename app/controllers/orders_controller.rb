@@ -14,13 +14,18 @@ class OrdersController < ApplicationController
     @order = current_user.orders.build(order_params)
     @order.save
     current_user.cart.update_inventory
-    reset_current_cart
+    current_user.cart.reset_cart
+    current_user.save
     flash[:notice] = "Your Order Has Been Submitted"
     redirect_to order_path(@order)
   end
   
   def show
-    @order = current_user.orders.find_by(id: params[:id])
+    if @order = current_user.orders.find_by(id: params[:id])
+      #render show
+    else
+      redirect_to orders_path
+    end
   end
   
   def admin_order
@@ -48,10 +53,10 @@ class OrdersController < ApplicationController
      params.require(:order).permit(:total, :status, line_item_ids: [])
   end
   
-  def reset_current_cart
-    current_user.cart.destroy
-    current_user.cart = nil
-    current_user.save
-  end
+  # def reset_current_cart
+  #   current_user.cart.destroy
+  #   current_user.cart = nil
+  #   current_user.save
+  # end
   
 end
