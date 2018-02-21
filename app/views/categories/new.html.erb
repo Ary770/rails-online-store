@@ -1,5 +1,8 @@
+<%= render 'errors', locals: @category %>
+
 <h1>Add New Category</h1>
 </br>
+
 <%= form_for(@category) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>

@@ -11,18 +11,13 @@ class ItemsController < ApplicationController
   end
   
   def create
-    if @item = Item.find_by(name: params[:item][:name])
-      flash[:error] = "#{@item.name} already exists."
-      redirect_to item_path(@item) 
-    else
-      @item = Item.new(item_params)
-      if @item.save
-        flash[:notice] = "Item has been created"
-        redirect_to item_path(@item)
-       else
-        ## save errors to flash if any
-        render :new
-      end
+    @item = Item.new(item_params)
+    if @item.save
+      @item.save
+      flash[:notice] = "Item has been created"
+      redirect_to item_path(@item)
+     else
+      render :new
     end
   end
   
@@ -34,7 +29,7 @@ class ItemsController < ApplicationController
     if @item.save  
       redirect_to item_path(@item)
     else
-      redirect_to edit_item(@item)
+      render :edit
     end
   end
   

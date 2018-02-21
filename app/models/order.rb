@@ -8,4 +8,5 @@ class Order < ApplicationRecord
        self.line_items << line_item
      end
   end
+
 end
