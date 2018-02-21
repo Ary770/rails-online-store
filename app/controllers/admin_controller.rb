@@ -9,7 +9,11 @@ class AdminController < ApplicationController
   end
   
   def orders
-    @orders = Order.all
+    if !params[:email].blank? && params[:email] != ""
+      @orders = Order.search_by_email(params[:email])
+    else 
+      @orders = Order.all
+    end
   end
   
 end

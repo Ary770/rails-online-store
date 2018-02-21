@@ -1,6 +1,14 @@
 <!--Incorporate Search Box-->
 <h1>Orders</h1>
 
+<div>
+  <h4>Filter orders:</h4>
+  <%= form_tag("/orders_index", method: "get") do %>
+    <%= search_field_tag "email", nil, placeholder: "Search by e-mail" %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
+
 <% @orders.reverse.each do |order| %>
     <div class="panel-body">
       <a href="/admin_order/<%= order.id %>" class="list-group-item"><h4><%= order.user.email %> | Order #: <%= order.id %> | <%= order.created_at.strftime("Order Placed: %b %d, %Y") %> | Status: <%= order.status %> | <strong><%= number_to_currency(order.total) %></strong></h4></a>
