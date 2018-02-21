@@ -14,17 +14,9 @@ class LineItemsController < ApplicationController
   end
   
   def destroy
-    remove_line_item
+    current_user.cart.remove_line_item(params[:id])
     current_user.cart.save
     redirect_to cart_path(current_user.cart)
   end
-  
-  private
-  
-  #maybe move method to cart model
-  def remove_line_item
-    @line_item = current_user.cart.line_items.find_by(id: params[:id])
-    @line_item.delete
-  end
-  
+
 end

@@ -30,7 +30,8 @@ class ItemsController < ApplicationController
   end
   
   def update
-    if @item.update(item_params)
+    @item.update(item_params)
+    if @item.save  
       redirect_to item_path(@item)
     else
       redirect_to edit_item(@item)

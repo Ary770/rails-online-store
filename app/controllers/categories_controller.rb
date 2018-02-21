@@ -14,8 +14,6 @@ class CategoriesController < ApplicationController
   end
   
   def create
-    ##validate user is admin! use cancan
-    ##clean logic into method
     if @category = Category.find_by(name: params[:category][:name])
       flash[:error] = "#{@category.name} already exists."
       redirect_to category_path(@category) 
@@ -25,7 +23,6 @@ class CategoriesController < ApplicationController
         flash[:notice] = "Category has been created"
         redirect_to category_path(@category)
        else
-        ## save errors to flash
         render :new
       end
     end
@@ -35,7 +32,6 @@ class CategoriesController < ApplicationController
     if @category.update(category_params)
       redirect_to category_path(@category)
     else
-      # save errors to flash, display in edit vie
       redirect_to edit_category(@category)
     end
   end

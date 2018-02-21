@@ -18,4 +18,25 @@ class Cart < ApplicationRecord
       self.line_items.build(item_id: new_item_id.to_i)
     end
   end
+  
+  def remove_line_item(line_item_id)
+    line_item = self.line_items.find_by(id: line_item_id)
+    line_item.delete
+  end
+  
+  def update_inventory
+    self.items.each do |item|
+      line_item = self.line_items.find_by(item_id: item.id)
+      item.inventory -= line_item.quantity
+      item.save
+    end
+  end
+  # def update_inventory
+  #   current_user.cart.items.each do |item|
+  #     @line_item = current_user.cart.line_items.find_by(item_id: item.id)
+  #     item.inventory -= @line_item.quantity
+  #     item.save
+  #   end
+  # end
+  
 end

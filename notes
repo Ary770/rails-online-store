@@ -4,7 +4,7 @@ Header
 #- My Orders link, when logged_in 
 #- Admin button for admin
 
-Add Admin Items with all info
+##Add Admin Items with all info
 
 Incorporate Addresses
 - Add address model and migration 
