@@ -1,6 +1,11 @@
 <h1><%= @item.name %></h1>
 
-<h2><%= number_to_currency(@item.price) %></h2>
+<div class= "container">
+  <h4><li><%= @item.description%></li></h4>
+</div>
+
+<div class= "green"><h2><%= number_to_currency(@item.price) %></h2></div>
+
 <% if @item.inventory < 5 %>
   <div class="fire-brick">
     <p>
