@@ -8,5 +8,12 @@
   <%= f.text_field :name %>
   <br></br>
   
-  <%= f.submit nil, class:"btn btn-primary" %>
+  <div class="btn-group">
+    <p> <%= f.submit nil, class:"btn btn-primary" %></p>
+  </div>
+  
+  <div class="btn-group">
+    <p><%= button_to "Delete", category_path(@category), method: :delete, class: "btn btn-danger"%></p>
+  </div>
+  
 <% end %>

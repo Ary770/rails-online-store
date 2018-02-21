@@ -19,7 +19,7 @@
 
 <% if can? :edit, @item %>
   <h3>Inventory: <%= @item.inventory%></h3>
-  <p><%= button_to "Edit Item", edit_item_path, method: :get%></p>
+  <p><%= button_to "Edit", edit_item_path, method: :get, class: "btn btn-warning"%></p>
 <% end %>
 
 <%= button_to 'Add to Cart', line_items_path(item_id: @item),  class:"btn btn-primary" %>

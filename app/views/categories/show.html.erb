@@ -5,6 +5,7 @@
 <% end %>
 
 <% if can? :create, Item %>
-  <p><%= button_to "Add New Item", new_category_item_path(@category.id), method: :get%></p>
-  <p><%= button_to "Edit Category", edit_category_path(@category.id), method: :get%></p>
+  </br>
+  <div class= "btn-group"><%= button_to "New Item", new_category_item_path(@category.id), method: :get, class:"btn btn-success"%></div>
+  <div class= "btn-group"><%= button_to "Edit Category", edit_category_path(@category.id), method: :get, class: "btn btn-warning"%></div>
 <% end %>
