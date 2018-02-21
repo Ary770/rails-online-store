@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   load_and_authorize_resource
   
   def new
-    #Validate user for admin.
     @category = Category.find_by(id: params[:category_id]) if params[:category_id]
     @item = Item.new  
   end
@@ -12,20 +11,16 @@ class ItemsController < ApplicationController
   end
   
   def create
-    ##validate user is admin! use cancan
-    ##clean logic into method
     if @item = Item.find_by(name: params[:item][:name])
-      ##maybe show alert that this item already exists, ask if you would like to update
       flash[:error] = "#{@item.name} already exists."
       redirect_to item_path(@item) 
     else
       @item = Item.new(item_params)
-      require 'pry'; binding.pry
       if @item.save
         flash[:notice] = "Item has been created"
         redirect_to item_path(@item)
        else
-        ## save errors to flash
+        ## save errors to flash if any
         render :new
       end
     end
@@ -35,11 +30,9 @@ class ItemsController < ApplicationController
   end
   
   def update
-    ##validate for user being admin
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      # save errors to flash, display in edit vie
       redirect_to edit_item(@item)
     end
   end

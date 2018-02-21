@@ -1,2 +1,11 @@
-<h1>Show all items with inventory and link_to or button_to edit </h1>
+<h1>All Items</h1>
 
+<% @items.each do |item| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h4>
+        <%= link_to item.name, item_path(item) %> | <%= number_to_currency(item.price)%> | Invertory: <%= item.inventory %> | Category: <%= item.category.name %> | <%= link_to "Edit", edit_item_path(item), method: :get %>
+      </h4>
+    </div>
+  </div>
+<% end %>
