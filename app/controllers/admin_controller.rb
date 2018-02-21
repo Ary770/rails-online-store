@@ -4,17 +4,12 @@ class AdminController < ApplicationController
   def index
   end
   
-  def items_idex
+  def items
     @items = Item.all
   end
   
   def orders
     @orders = Order.all
-  end
-  
-  def show_order
-    require 'pry'; binding.pry
-    @order = Order.find(params[:id])
   end
   
 end
