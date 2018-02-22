@@ -2,6 +2,7 @@ class LineItemsController < ApplicationController
  
   def create
     if user_signed_in?
+      # require 'pry'; binding.pry
       current_user.cart ||= current_user.build_cart ##review this line of code!
       current_user.cart.add_item(params[:item_id])
       current_user.cart.save
