@@ -9,6 +9,12 @@ class AdminController < ApplicationController
   end
   
   def orders
+    handle_search_logic
+  end
+  
+  private
+  
+  def handle_search_logic
     if !params[:email].blank? && params[:email] != ""
       @orders = Order.search_by_email(params[:email])
     elsif !params[:order_id].blank? && params[:order_id] != ""
