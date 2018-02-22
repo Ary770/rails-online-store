@@ -1,0 +1,24 @@
+<nav class="page-header">
+<nav class="navbar navbar-default"> 
+  <div class="container-fluid"> 
+    <div class="navbar-header"> 
+      <a href="/" class="navbar-brand">Pri Etz Wood</a> 
+    </div> 
+    <div class="collapse navbar-collapse"> 
+      <%= link_to "Categories", categories_path, class:"btn btn-default navbar-btn"%>
+      <% if user_signed_in? %>
+        <%= link_to "Cart", cart_path(current_user.cart), class:"btn btn-default navbar-btn" if current_user.cart%>
+        <p class="navbar-text navbar-right">Signed in as <%= current_user.email %></p>
+        <% if current_user.admin %>
+          <%= link_to "Admin", admin_index_path, class:"btn btn-default navbar-btn" %>
+        <% else %>
+           <%= link_to "Orders", orders_path, class:"btn btn-default navbar-btn" if current_user.orders != []%>
+        <% end %>
+        <%= link_to "Log Out", destroy_user_session_path, method: :delete, class:"btn btn-default navbar-btn" %>
+      <% else %>
+        <%= link_to "Sign In",  new_user_session_path, class:"btn btn-default navbar-btn" %>
+      <% end %>
+    </div> 
+  </div> 
+</nav>
+</nav>
