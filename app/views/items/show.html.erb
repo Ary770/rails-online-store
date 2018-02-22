@@ -1,27 +1,28 @@
 <h1><%= @item.name %></h1>
 
 
-<% if @item.description != "" %>
-  <div class= "container">
-    <h4><li><%= @item.description %></li></h4>
+<div class= "row">
+  <div class="col-sm-6 col-md-4 ">
+     <%= render 'image', locals: @item %>
+    <div class="card">
+      <%= render 'description', locals: @item %>
+      
+      <div class= "green"><h2><%= number_to_currency(@item.price) %></h2></div>
+      
+      <% if @item.inventory < 5 %>
+        <div class="fire-brick">
+          <p>
+            <strong>There are only <%= @item.inventory %> items left in stock.</strong>
+          </p>
+        </div>
+      <% end %>
+      
+      <% if can? :edit, @item %>
+        <h3>Inventory: <%= @item.inventory%></h3>
+        <p><%= button_to "Edit", edit_item_path, method: :get, class: "btn btn-warning"%></p>
+      <% end %>
+      
+      <%= button_to 'Add to Cart', line_items_path(item_id: @item),  class:"btn btn-primary" %>
+    </div>
   </div>
-<% end %>
-
-<div class= "green"><h2><%= number_to_currency(@item.price) %></h2></div>
-
-<% if @item.inventory < 5 %>
-  <div class="fire-brick">
-    <p>
-      <strong>There are only <%= @item.inventory %> items left in stock.</strong>
-    </p>
-  </div>
-<% end %>
-
-<% if can? :edit, @item %>
-  <h3>Inventory: <%= @item.inventory%></h3>
-  <p><%= button_to "Edit", edit_item_path, method: :get, class: "btn btn-warning"%></p>
-<% end %>
-
-<%= button_to 'Add to Cart', line_items_path(item_id: @item),  class:"btn btn-primary" %>
-
-
+</div>
