@@ -7,6 +7,8 @@ class Item < ApplicationRecord
   validates :name, uniqueness: true
   validates :price, presence: true
   validates :price, numericality: {message: "must be a number"}
+  validates :inventory, presence: true
+  validates :inventory, numericality: {message: "must be a number"}
   
   def self.available_items
     self.all.select do |item|

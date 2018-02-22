@@ -19,3 +19,14 @@ div .green {
    color: Green;
  }
  
+ .btn-primary {
+     background-color: #FFF;
+     color: #285e8e;
+     border-color: #3276b1;
+     border-radius: 25px;
+    
+ }
+ 
+.brown {
+    color: brown;
+ }

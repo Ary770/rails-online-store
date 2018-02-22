@@ -2,36 +2,8 @@
 
 <h1>Edit Item </h1>
 
-<%= form_for(@item) do |f| %>
-  <%= f.label :name %></br>
-  <%= f.text_field :name %></br>
-  
-  <%= f.label :price %></br>
-  <%= f.text_field :price %></br>
-  <!--validate that price should be only a number-->
-  
-  <%= f.label :inventory %></br>
-  <%= f.text_field :inventory %></br>
-  
-  <!--clean this up!-->
-  <%= f.label :category %></br>
-  <% if @category %>
-    <p><%= @category.name %></p>
-    <%= hidden_field_tag "category_id", "#{@category.id}"%></br>
-  <% else %>
-    <%= f.collection_select :category_id, Category.all, :id, :name %></br>
-  <% end %>
-  
-  <%= f.label :description %></br>
-  <%= f.text_field :description %></br>
-  </br>
-  
-  <div class="btn-group">
-    <p> <%= f.submit nil, class:"btn btn-primary" %></p>
-  </div>
-  
-  <div class="btn-group">
-    <p><%= button_to "Delete", item_path(@item), method: :delete, class: "btn btn-danger"%></p>
-  </div>
+<%= render 'form', locals: @item %>
 
-<% end %>
+<div class="btn-group">
+  <p><%= button_to "Delete", item_path(@item), method: :delete, class: "btn btn-danger"%></p>
+</div>

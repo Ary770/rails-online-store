@@ -1,28 +1,5 @@
 <%= render 'errors', locals: @item %>
 
-<h1>Add New Item <%="To #{@category.name}" if @category%></h1>
+<h1>Add Item <%="To #{@category.name}" if @category %></h1>
 
-<%= form_for(@item) do |f| %>
-  <%= f.label :name %></br>
-  <%= f.text_field :name %></br>
-  
-  <%= f.label :price %></br>
-  <%= f.text_field :price %></br>
-  
-  <%= f.label :inventory %></br>
-  <%= f.text_field :inventory %></br>
-  
-  <%= f.label :category %></br>
-  <% if @category %>
-    <p><%= @category.name %></p>
-    <%= f.hidden_field :category_id, value: @category.id %></br>
-  <% else %>
-    <%= f.collection_select :category_id, Category.all, :id, :name %></br>
-  <% end %>
-  
-  <%= f.label :description %></br>
-  <%= f.text_field :description %></br>
-  </br>
-  <p><%= f.submit nil, class:"btn btn-primary" %></p>
-  
-<% end %>
+<%= render 'form', locals: @item %>
