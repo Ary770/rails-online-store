@@ -9,9 +9,9 @@
   <%= f.text_field :inventory %></br>
   
   <%= f.label :category %></br>
-  <% if @category %>
+  <% if @category && @category.name %>
     <p><%= @category.name %></p>
-    <%= hidden_field_tag "category_id", "#{@category.id}"%></br>
+    <%= f.hidden_field :category_id, value: @category.id %></br>
   <% else %>
     <%= f.collection_select :category_id, Category.all, :id, :name %></br>
   <% end %>

@@ -3,8 +3,12 @@ class ItemsController < ApplicationController
   load_and_authorize_resource
   
   def new
-    @category = Category.find_by(id: params[:category_id]) if params[:category_id]
-    @item = Item.new  
+    if params[:category_id]
+      @category = Category.find_by(id: params[:category_id])
+    else
+      @category = Category.new
+      @item = Item.new
+    end
   end
   
   def show
@@ -13,7 +17,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      @item.save
       flash[:notice] = "Item has been created"
       redirect_to item_path(@item)
      else
@@ -21,7 +24,7 @@ class ItemsController < ApplicationController
     end
   end
   
-  def edit 
+  def edit
   end
   
   def update

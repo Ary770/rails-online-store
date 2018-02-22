@@ -4,8 +4,14 @@
 
 <div class= "green"><h2><%= number_to_currency(@item.price) %></h2></div>
 
-<% if @item.inventory < 5 %>
+<% if @item.inventory == 0 %>
   <div class="fire-brick">
+    <p>
+      <strong>Item is out of stock.</strong>
+    </p>
+  </div>
+<% elsif @item.inventory < 3  %>
+    <div class="fire-brick">
     <p>
       <strong>There are only <%= @item.inventory %> items left in stock.</strong>
     </p>
@@ -17,4 +23,4 @@
   <p><%= button_to "Edit", edit_item_path, method: :get, class: "btn btn-warning"%></p>
 <% end %>
 
-<%= button_to 'Add to Cart', line_items_path(item_id: @item),  class:"btn btn-primary" %>
+<%= button_to 'Add to Cart', line_items_path(item_id: @item),  class:"btn btn-primary" if @item.inventory != 0 %>
