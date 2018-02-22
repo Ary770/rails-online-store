@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   def new
     if params[:category_id]
       @category = Category.find_by(id: params[:category_id])
+      @item = Item.new
     else
       @category = Category.new
       @item = Item.new
@@ -16,11 +17,12 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
+    # require 'pry'; binding.pry
     if @item.save
       flash[:notice] = "Item has been created"
       redirect_to item_path(@item)
      else
-      render :new
+      redirect_to new_item_path
     end
   end
   
@@ -32,7 +34,7 @@ class ItemsController < ApplicationController
     if @item.save  
       redirect_to item_path(@item)
     else
-      render :edit
+      redirect_to edit_item_path(@item)
     end
   end
   
