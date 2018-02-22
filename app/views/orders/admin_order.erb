@@ -17,7 +17,7 @@
 
 <%=form_for(@order) do |f| %>
   <%= f.label :status %>
-  <%= f.select :status, ["Submitted", "Shipped", "Completed"]%>
+  <%= f.select :status, ["submitted", "shipped", "completed", "pending"]%>
   
   <%= f.submit %>
 <% end %>

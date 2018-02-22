@@ -1,10 +1,14 @@
 <!--Incorporate Search Box-->
-<h1><%= link_to "Orders", admin_orders_path %></h1>
+<h1><%= link_to "All Orders", admin_orders_path %></h1>
 
 <div>
   <h4>Filter orders:</h4>
   <%= form_tag("/orders_index", method: "get") do %>
     <%= search_field_tag "email", nil, placeholder: "Search by e-mail" %>
+    <%= submit_tag "Filter" %>
+    <%= search_field_tag "order_id", nil, placeholder: "Search by order #" %>
+    <%= submit_tag "Filter" %>
+    Search by status: <%= select_tag "status", options_for_select(["submitted", "shipped", "completed", "pending"]), include_blank: true %>
     <%= submit_tag "Filter" %>
   <% end %>
 </div>

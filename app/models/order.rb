@@ -10,7 +10,9 @@ class Order < ApplicationRecord
   end
   
   def self.search_by_id(id)
-    self.find_by(id: id)
+    order_ary = []
+    order = self.find_by(id: id)
+    order_ary.push(order)
   end
   
   def self.search_by_email(email)
@@ -20,8 +22,10 @@ class Order < ApplicationRecord
     end
   end
   
-  def self.order_by_latest
-    self.order(created_at: :desc)
+  def self.search_by_status(status)
+    self.all.select do |order|
+      order.status == status
+    end
   end
   
 end
