@@ -1,15 +1,16 @@
 <h1>Checkout</h1>
 </br>
+
+
 <%= form_for(@order) do |f|%>
-  <% @cart.line_items.each do |line_item| %>
-    <p><%= line_item.item.name%> | <%= number_to_currency(line_item.item.price) %> | Quantity: <%= line_item.quantity %></p>
-    <%= f.hidden_field :line_item_ids, :multiple => true, :value => line_item.id %>
-  <% end %>
-  
-  <h3>Order total: <strong><%= number_to_currency(@cart.total) %></strong></h3>
-  <%= f.hidden_field :total, :value => @cart.total%>
-  <%= f.hidden_field :status, :value => "submitted" %>
-  </br>
+  <div class="panel panel-default">
+    <% @cart.line_items.each do |line_item| %>
+      <div class="panel-body">
+        <%= line_item.item.name%> | <%= number_to_currency(line_item.item.price) %> | Quantity: <%= line_item.quantity %>
+        <%= f.hidden_field :line_item_ids, :multiple => true, :value => line_item.id %>
+      </div>
+    <% end %>
+  </div>
 
   <h4>Shipping Address: </h4>
   <%= f.fields_for :address do |addr| %>
@@ -31,7 +32,13 @@
     <%= addr.label :address_type %>
     <%= addr.text_field :address_type %><br>
     <%= addr.hidden_field :user_id, value: current_user.id %>
+    
   <% end %>
+  
+  <h3>Order total: <strong><%= number_to_currency(@cart.total) %></strong></h3>
+  <%= f.hidden_field :total, :value => @cart.total%>
+  <%= f.hidden_field :status, :value => "submitted" %>
+  </br>
   
   <%= button_to "Submit Order", create_order_path, class:"btn btn-primary"%>
 
