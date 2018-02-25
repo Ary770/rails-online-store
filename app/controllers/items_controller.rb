@@ -17,12 +17,11 @@ class ItemsController < ApplicationController
   
   def create
     @item = Item.new(item_params)
-    # require 'pry'; binding.pry
     if @item.save
       flash[:notice] = "Item has been created"
       redirect_to item_path(@item)
      else
-      redirect_to new_item_path
+      render :new
     end
   end
   
@@ -34,7 +33,7 @@ class ItemsController < ApplicationController
     if @item.save  
       redirect_to item_path(@item)
     else
-      redirect_to edit_item_path(@item)
+      render :edit
     end
   end
   

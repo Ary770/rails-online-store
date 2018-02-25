@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :addresses
   resources :line_items
   
   resources :categories do 

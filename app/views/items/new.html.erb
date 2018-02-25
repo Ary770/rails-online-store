@@ -1,5 +1,5 @@
 <%= render 'errors', locals: @item %>
 
-<h1>Add Item <%="To #{@category.name}" if @category.name %></h1>
+<h1>Add Item <%="To #{@category.name}" if @category && @category.name %></h1>
 
 <%= render 'form', locals: [@item, @category] %>

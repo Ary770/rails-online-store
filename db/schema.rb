@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222202627) do
+ActiveRecord::Schema.define(version: 20180223185529) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street_address_1"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
+    t.string "address_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -56,6 +67,7 @@ ActiveRecord::Schema.define(version: 20180222202627) do
     t.datetime "updated_at", null: false
     t.integer "total"
     t.integer "user_id"
+    t.integer "address_id"
   end
 
   create_table "users", force: :cascade do |t|
