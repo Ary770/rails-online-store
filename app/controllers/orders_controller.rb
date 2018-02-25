@@ -8,6 +8,8 @@ class OrdersController < ApplicationController
   def new
     @cart = current_user.cart
     @order = Order.new
+    
+    @order.build_address
   end
   
   def create
@@ -50,7 +52,8 @@ class OrdersController < ApplicationController
   private
   
   def order_params
-     params.require(:order).permit(:total, :status, line_item_ids: [])
+     params.require(:order).permit(:total, :status, line_item_ids: [], address_attributes: [:name,
+      :street_address, :city, :state, :zipcode, :address_type, :user_id])
   end
   
   # def reset_current_cart
