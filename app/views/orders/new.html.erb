@@ -11,10 +11,6 @@
   <%= f.hidden_field :status, :value => "submitted" %>
   </br>
 
-<%#=form_for(@address) do |f| %>
-  <%#= f.label :name %>
-  <%#= f.text_field :name %>
-<%# end %>
   <h4>Shipping Address: </h4>
   <%= f.fields_for :address do |addr| %>
     <%= addr.label :name %>
