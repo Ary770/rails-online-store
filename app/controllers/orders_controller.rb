@@ -51,8 +51,7 @@ class OrdersController < ApplicationController
   private
   
   def order_params
-     params.require(:order).permit(:total, :status, line_item_ids: [], address_attributes: [:name,
-      :street_address, :city, :state, :zipcode, :address_type, :user_id])
+     params.require(:order).permit(:total, :status, line_item_ids: [], address_attributes: [:name, :street_address, :city, :state, :zipcode, :address_type, :user_id])
   end
   
   # def reset_current_cart
