@@ -15,9 +15,9 @@ class AdminController < ApplicationController
   private
   
   def handle_search_logic
-    if !params[:email].blank? && params[:email] != ""
-      @orders = Order.search_by_email(params[:email])
-    elsif !params[:order_id].blank? && params[:order_id] != ""
+    if @orders = Order.search_by_email(params[:email])
+      @orders
+    elsif !params[:order_id].blank? && params[:order_id] != "" && params[:order_id].to_i != 0
       @orders = Order.search_by_id(params[:order_id])
     elsif !params[:status].blank? && params[:status] != ""
       @orders = Order.search_by_status(params[:status])

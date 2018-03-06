@@ -18,9 +18,12 @@ class Order < ApplicationRecord
   end
   
   def self.search_by_email(email)
-    @user = User.find_by(email: email)
-    @user.orders.select do |order|
-      order
+    if @user = User.find_by(email: email)
+      @user.orders.select do |order|
+        order
+      end
+    else
+      false
     end
   end
   
