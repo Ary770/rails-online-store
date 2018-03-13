@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_one :cart
   has_many:orders
   has_many :addresses, through: :orders
+  has_many :comments
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

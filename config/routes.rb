@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  resources :comments
   resources :addresses
   resources :line_items
   
