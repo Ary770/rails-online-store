@@ -9,24 +9,24 @@
   </div>
 </div>
 
-<h3>Comments</h3>
+<!-- <h3>Comments</h3>
 <% if @item.comments != [] %>
   <div class="container">
-    <div class="thumbnail"> 
+    <div class="thumbnail">
       <% @item.comments.each do |comment| %>
         <h4><%= comment.user.email %>:</h4>
         <p><%= comment.text %></p>
       <% end %>
     </div>
   </div>
-<% end %>
+<% end %> -->
 
-<%= form_for(@comment) do |f| %>
+<!-- <%= form_for(@comment) do |f| %>
   <%= f.label "Leave a comment:"%><br/>
   <%= f.text_field :text%>
-  
-  <%= f.hidden_field :user_id, :value => current_user.id%>
-  <%= f.hidden_field :item_id, :value => @item.id %>
+
+  <%#= f.hidden_field :user_id, :value => current_user.id%>
+  <%#= f.hidden_field :item_id, :value => @item.id %>
   <br></br>
   <%= f.submit %>
-<% end %>
+<% end %> -->
