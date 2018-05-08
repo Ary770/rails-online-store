@@ -1,10 +1,10 @@
 <nav class="page-header">
-<nav class="navbar navbar-default"> 
-  <div class="container-fluid"> 
-    <div class="navbar-header"> 
-      <a href="/" class="navbar-brand">Pri Etz Wood</a> 
-    </div> 
-    <div class="collapse navbar-collapse"> 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">Rails App</a> 
+    </div>
+    <div class="collapse navbar-collapse">
       <%= link_to "Categories", categories_path, class:"btn btn-default navbar-btn"%>
       <% if user_signed_in? %>
         <%= link_to "Cart", cart_path(current_user.cart), class:"btn btn-default navbar-btn" if current_user.cart%>
@@ -18,7 +18,7 @@
       <% else %>
         <%= link_to "Sign In",  new_user_session_path, class:"btn btn-default navbar-btn" %>
       <% end %>
-    </div> 
-  </div> 
+    </div>
+  </div>
 </nav>
 </nav>
