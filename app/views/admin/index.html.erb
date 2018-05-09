@@ -1,17 +1,23 @@
 <% if current_user.admin %>
   <h3><%= link_to "Orders", admin_orders_path%></h3>
-  <h3><%= link_to "All Items", admin_items_path, id: "js-all-items"%></h3>
+  <h3><%= link_to "All Items", admin_items_path %><button type="button" id="js-all-items" class="btn btn-link">&or;</button></h3>
   <div class="js-items">
   </div>
   <h3><%= link_to "Add Item", new_item_path%></h3>
   <h3><%= link_to "Add Category", new_category_path%></h3>
 <% end %>
 
+
 <script type="text/javascript">
   $(function() {
-    $('a#js-all-items').click(function (event) {
-      alert("ohhhhhh");
-      event.preventDefault();
+    $('button#js-all-items').click(function (event) {
+      $.getJSON('/items_index', function (itemsData) {
+        var itemsList = "";
+        itemsData.forEach(function(item){
+          itemsList+= `<div class="panel panel-default"><div class="panel-body"><h4><a href="items/${item.id}">${item.name} | $${item.price.toLocaleString()} | Inventory: ${item.inventory} | Category: ${item.category.name}</a></h4></div></div>`
+        });
+        $('.js-items').html(itemsList)
+      })
     });
   });
 </script>

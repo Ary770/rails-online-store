@@ -12,8 +12,8 @@
   $(function(){
     $(".btn.btn-link").on("click", function(){
       var id = $(this).data("id")
-      $.getJSON(`/categories/${id}`, function(category_data){
-        var items = category_data["items"]
+      $.getJSON(`/categories/${id}`, function(categoryData){
+        var items = categoryData["items"]
         var itemsList = "";
 
         items.forEach(function(item) {
