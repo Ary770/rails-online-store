@@ -1,6 +1,6 @@
 <% if current_user.admin %>
   <h3><%= link_to "Orders", admin_orders_path%></h3>
-  <h3><%= link_to "All Items", admin_items_path%></h3>
+  <h3><%= link_to "All Items", admin_items_path, id: "js-all-items"%></h3>
   <div class="js-items">
   </div>
   <h3><%= link_to "Add Item", new_item_path%></h3>
@@ -8,5 +8,10 @@
 <% end %>
 
 <script type="text/javascript">
-
+  $(function() {
+    $('a#js-all-items').click(function (event) {
+      alert("ohhhhhh");
+      event.preventDefault();
+    });
+  });
 </script>

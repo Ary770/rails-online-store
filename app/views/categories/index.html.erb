@@ -7,3 +7,20 @@
 <% if can? :create, @category %>
   <p><%= button_to "Add New Category", new_category_path, method: :get, class:"btn btn-success" %></p>
 <% end %>
+
+<script type="text/javascript">
+  $(function(){
+    $(".btn.btn-link").on("click", function(){
+      var id = $(this).data("id")
+      $.getJSON(`/categories/${id}`, function(category_data){
+        var items = category_data["items"]
+        var itemsList = "";
+
+        items.forEach(function(item) {
+          itemsList+= `<li><a href="/items/${item.id}">${item.name} | $${item.price.toLocaleString()}</a></li>`;
+        });
+        $(`#category-item-${id}`).html(itemsList)
+      });
+    });
+  });
+</script>
