@@ -10,3 +10,15 @@
 <div class="row">
   <%= render partial: "item", collection: @items  %>
 </div>
+
+<!-- <script type="text/javascript">
+  $(function() {
+    $(`button#js-description`).click(function(){
+      var id = $(this).data("id")
+      $.getJSON(`/items/${id}`, function(item) {
+        var itemDescription = item.description
+        $(`#description-${item.id}`).html(itemDescription)
+      })
+    });
+  });
+</script> -->
