@@ -5,6 +5,6 @@
   <%= f.hidden_field :user_id, :value => current_user.id%>
   <%= f.hidden_field :item_id, :value => @item.id %>
   <br></br>
-  
-  <%= f.submit %>
+
+  <%= f.submit nil, id: "submit-comment"%>
 <% end %>

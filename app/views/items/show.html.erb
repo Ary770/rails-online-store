@@ -43,10 +43,12 @@
       event.preventDefault();
       var values = $(this).serialize();
       var posting = $.post('/comments', values);
+
       posting.done(function(comment) {
         var commentFormat = `<div class="container"><div class="thumbnail"><h4>${comment.user.email}</h4><p>${comment.text}</p></div></div>`
         $('#js-view-comments').append(commentFormat);
         $('#comment_text').val('');
+        document.getElementById('submit-comment').disabled = false;
       });
     });
   });

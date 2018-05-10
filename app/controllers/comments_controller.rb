@@ -2,8 +2,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.save
-    render json: @comment, status: 201
+    if @comment.save
+      render json: @comment, status: 201
+    else
+      redirect_to item_path(@comment.item_id)
+    end
   end
 
   private
