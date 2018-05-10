@@ -1,15 +1,15 @@
 Things to work on next:
 
 Header
-#- My Orders link, when logged_in 
+#- My Orders link, when logged_in
 #- Admin button for admin
 
 ##Add Admin Items with all info
 
 Incorporate Addresses
-- Add address model and migration 
-- Add address_id field to orders table 
-- Prompt user to enter shipping address at checkout 
+- Add address model and migration
+- Add address_id field to orders table
+- Prompt user to enter shipping address at checkout
 - Address should be saved to @order
 
 Add Images to Items
@@ -26,3 +26,6 @@ Bootstrap
 -Modifiy HTML and CSS with bootstrap
 - Change default color
 
+jQuery
+
+-Implement jquery form on items/show page to edit the item on admin feature
