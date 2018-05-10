@@ -1,0 +1,10 @@
+<%= form_for(@comment) do |f| %>
+  <%= f.label "Leave a comment:"%><br/>
+  <%= f.text_field :text%>
+
+  <%= f.hidden_field :user_id, :value => current_user.id%>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+  <br></br>
+  
+  <%= f.submit %>
+<% end %>

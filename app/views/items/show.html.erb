@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<br></br>
+<br>
 
 <% if @item.comments != [] %>
   <h4><a href="#" id="js-comments" data-id="<%= @item.id %>">Show Comments</a></h4>
@@ -18,46 +18,35 @@
 <div id="js-view-comments">
 </div>
 
-<%= form_for(@comment) do |f| %>
-  <%= f.label "Leave a comment:"%><br/>
-  <%= f.text_field :text%>
-
-  <%= f.hidden_field :user_id, :value => current_user.id%>
-  <%= f.hidden_field :item_id, :value => @item.id %>
-  <br></br>
-  <%= f.submit %>
-<% end %>
+<%= render 'comment_form', locals: @comment %>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
     $('#js-comments').click(function(e){
+      e.preventDefault();
       var id = $(this).data("id")
       $.getJSON(`/items/${id}`, function(itemData) {
-
         var comments = itemData['comments']
         var commentsList = "";
-
         comments.forEach(function (comment) {
           commentsList += `<div class="container"><div class="thumbnail"><h4>${comment.user.email}</h4><p>${comment.text}</p></div></div>`
         })
-        $('#js-view-comments').html(commentsList)
+        $('#js-view-comments').html(commentsList);
       })
-      e.preventDefault();
     });
   });
 </script>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $('form').submit(function(event) {
+    $('form#new_comment').on("submit", function(event) {
       event.preventDefault();
       var values = $(this).serialize();
       var posting = $.post('/comments', values);
-
       posting.done(function(comment) {
         var commentFormat = `<div class="container"><div class="thumbnail"><h4>${comment.user.email}</h4><p>${comment.text}</p></div></div>`
-        $('#js-view-comments').append(commentFormat)
-        $('#comment_text').val('')
+        $('#js-view-comments').append(commentFormat);
+        $('#comment_text').val('');
       });
     });
   });
