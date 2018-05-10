@@ -12,7 +12,7 @@
 <br></br>
 
 <% if @item.comments != [] %>
-<h4><a href="#" id="js-comments" data-id="<%= @item.id %>">Show Comments</a></h4>
+  <h4><a href="#" id="js-comments" data-id="<%= @item.id %>">Show Comments</a></h4>
 <% end %>
 
 <div id="js-view-comments">
@@ -43,6 +43,22 @@
         $('#js-view-comments').html(commentsList)
       })
       e.preventDefault();
+    });
+  });
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('form').submit(function(event) {
+      event.preventDefault();
+      var values = $(this).serialize();
+      var posting = $.post('/comments', values);
+
+      posting.done(function(comment) {
+        var commentFormat = `<div class="container"><div class="thumbnail"><h4>${comment.user.email}</h4><p>${comment.text}</p></div></div>`
+        $('#js-view-comments').append(commentFormat)
+        $('#comment_text').val('')
+      });
     });
   });
 </script>
