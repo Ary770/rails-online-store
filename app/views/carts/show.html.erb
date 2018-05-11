@@ -2,13 +2,13 @@
 
 <%= render partial: "line_item", collection: @cart.line_items  %>
 
-<div class="green"> 
+<div class="green">
   <h4>Order total: <strong><%= number_to_currency(@cart.total) %></strong></h4>
 </div>
 
 <% if @cart.line_items == [] %>
   <div class="fire-brick">
-    <p>Your Cart Is Empty!</p>
+    <p>I'm Empty! I feel so lonely...</p>
   </div>
 <% else %>
   <%= button_to 'Checkout', new_order_path, method: :get, class: "btn btn-primary"  %>

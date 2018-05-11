@@ -13,8 +13,9 @@
     $('button#js-all-items').click(function (event) {
       $.getJSON('/items_index', function (itemsData) {
         var itemsList = "";
-        itemsData.forEach(function(item){
-          itemsList+= `<div class="panel panel-default"><div class="panel-body"><h4><a href="items/${item.id}">${item.name} | $${item.price.toLocaleString()} | Inventory: ${item.inventory} | Category: ${item.category.name}</a></h4></div></div>`
+        itemsData.forEach(function(itemData){
+          var item = new Item(itemData)
+          itemsList+= item.buildHtml();
         });
         $('.js-items').html(itemsList)
       })

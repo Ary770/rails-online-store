@@ -29,4 +29,4 @@ Bootstrap
 jQuery
 
 -Implement jquery form on items/show page to edit the item on admin feature.
--Fix comments form, button not working after creating one comment.
+x Fix comments form, button not working after creating one comment.
