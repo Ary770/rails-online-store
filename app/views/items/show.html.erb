@@ -28,8 +28,9 @@
       $.getJSON(`/items/${id}`, function(itemData) {
         var comments = itemData['comments']
         var commentsList = "";
-        comments.forEach(function (comment) {
-          commentsList += `<div class="container"><div class="thumbnail"><h4>${comment.user.email}</h4><p>${comment.text}</p></div></div>`
+        comments.forEach(function (commentData) {
+          var comment = new Comment(commentData)
+          commentsList += comment.buildHtml();
         })
         $('#js-view-comments').html(commentsList);
       })
@@ -44,11 +45,12 @@
       var values = $(this).serialize();
       var posting = $.post('/comments', values);
 
-      posting.done(function(comment) {
-        var commentFormat = `<div class="container"><div class="thumbnail"><h4>${comment.user.email}</h4><p>${comment.text}</p></div></div>`
+      posting.done(function(commentData) {
+        var comment = new Comment(commentData)
+        var commentFormat = comment.buildHtml();
         $('#js-view-comments').append(commentFormat);
-        $('#comment_text').val('');
         document.getElementById('submit-comment').disabled = false;
+        $('#comment_text').val('');
       });
     });
   });
