@@ -6,6 +6,7 @@ class Comment {
   constructor(attributes) {
     this.id = attributes.id;
     this.text = attributes.text;
+    this.created_at = attributes.created_at;
     this.user = attributes.user;
   }
 
@@ -14,6 +15,11 @@ class Comment {
   }
 
   buildHtml(){
-    return `<div class="container"><div class="thumbnail"><h4>${this.user.email}</h4><p>${this.text}</p></div></div>`;
+    return `<div class="panel panel-default"><div class="panel-heading"><h6 class="panel-title">${this.user.email}<span class="text-muted" style="float: right"><small>${this.date()}</small></span></h6></div><div class="panel-body"><p>${this.text}</p></div></div>`;
+  }
+
+  date(){
+    let date = new Date(this.created_at);
+    return date.toLocaleDateString();
   }
 }
