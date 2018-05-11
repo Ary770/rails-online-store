@@ -6,7 +6,7 @@ class Item {
     this.id = attributes.id;
     this.name = attributes.name;
     this.price = attributes.price;
-    this.inventroy = attributes.inventory;
+    this.inventory = attributes.inventory;
     this.description = attributes.description;
     this.category = attributes.category;
   }

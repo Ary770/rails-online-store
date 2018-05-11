@@ -14,6 +14,7 @@
       $.getJSON('/items_index', function (itemsData) {
         var itemsList = "";
         itemsData.forEach(function(itemData){
+          debugger;
           var item = new Item(itemData)
           itemsList+= item.buildHtml();
         });
