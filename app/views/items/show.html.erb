@@ -24,16 +24,29 @@
   $(function() {
     $('#js-comments').click(function(e){
       e.preventDefault();
-      var id = $(this).data("id")
+      const id = $(this).data("id")
       $.getJSON(`/items/${id}`, function(itemData) {
-        var comments = itemData['comments']
-        var commentsList = "";
+        const comments = itemData['comments']
+        let commentsList = "";
+
+        comments.sort(function(a, b){
+          let dateA = new Date(a.created_at)
+          let dateB = new Date(b.created_at)
+
+          if (dateA > dateB) {
+            return -1
+          } else {
+            return 1
+          }
+        });
+        
         comments.forEach(function (commentData) {
-          var comment = new Comment(commentData)
+          const comment = new Comment(commentData);
           commentsList += comment.buildHtml();
         })
+
         $('#js-view-comments').html(commentsList);
-      })
+      });
     });
   });
 </script>
@@ -42,12 +55,12 @@
   $(function () {
     $('form#new_comment').on("submit", function(event) {
       event.preventDefault();
-      var values = $(this).serialize();
-      var posting = $.post('/comments', values);
+      const values = $(this).serialize();
+      const posting = $.post('/comments', values);
 
       posting.done(function(commentData) {
-        var comment = new Comment(commentData)
-        var commentFormat = comment.buildHtml();
+        const comment = new Comment(commentData)
+        const commentFormat = comment.buildHtml();
         $('#js-view-comments').append(commentFormat);
         document.getElementById('submit-comment').disabled = false;
         $('#comment_text').val('');

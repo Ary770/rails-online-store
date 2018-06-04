@@ -1,12 +1,11 @@
 // # Place all the behaviors and hooks related to the matching controller here.
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
-
 class Comment {
   constructor(attributes) {
     this.id = attributes.id;
     this.text = attributes.text;
-    this.created_at = attributes.created_at;
+    this.createdAt = attributes.created_at;
     this.user = attributes.user;
   }
 
@@ -19,7 +18,23 @@ class Comment {
   }
 
   date(){
-    let date = new Date(this.created_at);
+    let date = new Date(this.createdAt);
     return date.toLocaleDateString();
   }
 }
+
+// function displayComments() {
+//   $('#js-comments').click(function(e){
+//     e.preventDefault();
+//     var id = $(this).data("id")
+//     $.getJSON(`/items/${id}`, function(itemData) {
+//       var comments = itemData['comments']
+//       var commentsList = "";
+//       comments.forEach(function (commentData) {
+//         var comment = new Comment(commentData);
+//         commentsList += comment.buildHtml();
+//       })
+//       $('#js-view-comments').html(commentsList);
+//     });
+//   });
+// }

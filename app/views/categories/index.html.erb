@@ -11,10 +11,10 @@
 <script type="text/javascript">
   $(function(){
     $(".btn.btn-link").on("click", function(){
-      var id = $(this).data("id")
+      const id = $(this).data("id");
       $.getJSON(`/categories/${id}`, function(categoryData){
-        var items = categoryData["items"]
-        var itemsList = "";
+        const items = categoryData["items"]
+        let itemsList = "";
 
         items.forEach(function(item) {
           itemsList+= `<li><a href="/items/${item.id}">${item.name} | $${item.price.toLocaleString()}</a></li>`;
