@@ -18,7 +18,9 @@
 <div id="js-view-comments">
 </div>
 
-<%= render 'comment_form', locals: @comment %>
+<% if current_user %>
+  <%= render 'comment_form', locals: @comment %>
+<% end %>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
@@ -39,7 +41,7 @@
             return 1
           }
         });
-        
+
         comments.forEach(function (commentData) {
           const comment = new Comment(commentData);
           commentsList += comment.buildHtml();
